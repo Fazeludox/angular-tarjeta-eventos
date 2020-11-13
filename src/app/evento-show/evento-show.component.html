@@ -1,0 +1,16 @@
+<div class="card-columns" *ngIf="Evento && Evento.length; else noLoaded">
+  <div class="card" *ngFor="let elem of Evento">
+    <div class="card-body">
+      <h4 class="card-title">{{ elem.title }}</h4>
+      <p class="card-text">{{ elem.desc }}</p>
+    </div>
+    <div class="card-footer text-muted">
+      {{ elem.date }}
+      <span class="float-right">{{ elem.price }}E</span>
+    </div>
+  </div>
+</div>
+<ng-template #noLoaded>
+  <h3>No hay eventos disponibles</h3>
+</ng-template>
+
