@@ -22,53 +22,12 @@
   </nav>
 </div>
 
-<form class="mt-4" (ngSubmit)="addEvento()">
-  <div class="form-group">
-    <label for="name">Nombre</label>
-    <input type="text" class="form-control" name="title" [(ngModel)]="newEvento.title" placeholder="Enter name">
-  </div>
-  <div class="form-group">
-    <label for="date">Fecha</label>
-    <input type="date" class="form-control" name="date" [(ngModel)]="newEvento.date">
-  </div>
-  <div class="form-group">
-    <label for="description">Descripción</label>
-    <textarea class="form-control" name="description" rows="3" [(ngModel)]="newEvento.desc">
-    </textarea>
-  </div>
-  <div class="form-group">
-    <label for="price">Precio</label>
-    <input type="number" [(ngModel)]="newEvento.price" class="form-control" name="price" min="0.00" max="10000.00"step="0.01"/>
-  </div>
-  <div class="form-group">
-    <label for="image">Imagen</label>
-    <input type="file" class="form-control" name="image" #fileImage (change)="changeImage(fileImage)">
-  </div>
-  <img [src]="newEvento.image" alt="" class="img-thumbnail">
-  <button type="submit" class="btn btn-primary">Create</button>
-</form>
+<evento-add (addEvento)="nuevoEvento($event)"></evento-add>
 
 <div class="card-columns" *ngIf="Evento && Evento.length; else noLoaded">
 
+<evento-item *ngFor="let elem of Evento | eventFilter:filterSearch" [elemEvento]="elem" (eventSelect)="deleteEventos(elem)"></evento-item>
 
-  <div class="card" *ngFor="let elem of Evento | eventFilter: filterSearch">
-    <img
-      [src]="elem.image"
-      class="card-img-top"
-      alt="{{ elem.title | uppercase }}"
-      [ngStyle]="alturaImage"
-    />
-    <div class="card-body">
-      <h4 class="card-title">{{ elem.title | titlecase }}</h4>
-      <p class="card-text">{{ elem.desc }}</p>
-    </div>
-    <div class="card-footer text-muted">
-      {{ elem.date | date: "dd/MM/y" }}
-      <span class="float-right">{{
-        elem.price | currency: "EUR":"symbol"
-      }}</span>
-    </div>
-  </div>
 </div>
 
 <ng-template #noLoaded>
