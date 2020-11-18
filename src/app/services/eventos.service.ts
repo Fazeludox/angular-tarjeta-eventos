@@ -1,26 +1,39 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { IEventos } from '../interfaces/i-eventos';
+import { ResponseEventos } from '../interfaces/respuesta';
+import { catchError, map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventosService {
 
+  private eventURL: string = 'http://curso.i234.me:8080/eventos';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getEventos = ()=>{
-    return [{
-      title: "Presentacion Angular",
-      image: "assets/angular.png",
-      date: '2020-10-15',
-      desc: "Evento hablando de angular y su impacto.",
-      price: 15,
-    }, {
-      title: "JQuery esta muerto",
-      image: "assets/jquerydead.png",
-      date: '2020-05-02',
-      desc: "La aparicion de ES6 esta matando a Jquery",
-      price: 25,
-    }]
+  getEventos(): Observable <IEventos[]>{
+    return this.http.get<ResponseEventos>(this.eventURL).pipe(
+      map(res=>res.EventosRespuesta),
+      catchError((resp: HttpErrorResponse) => throwError( `Error obteniendo productos. Código de servidor: ${resp.status}. Mensaje:${resp.message}`))
+    );
   }
+
+  /*useFet = async () => {
+
+    //let a = await fetch("http://curso.i234.me:8080/eventos");
+
+    let a = fetch(this.URL);
+
+    console.log(a);
+
+    (await a).json().then(responseText => {
+      let uJSON:Array<object> = responseText;
+      return uJSON;
+
+    }).catch(err => console.log(err))
+  }*/
 }

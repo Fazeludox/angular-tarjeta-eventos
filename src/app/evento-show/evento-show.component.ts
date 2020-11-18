@@ -22,8 +22,19 @@ export class EventoShowComponent implements OnInit {
 
   constructor(private eventoService:EventosService) {}
 
-  ngOnInit(): void {
-    this.Evento = this.eventoService.getEventos();
+ ngOnInit(): void{
+
+  this.eventoService.getEventos()
+  .subscribe(
+    (result) => this.Evento = result,
+    (err) => console.error(err),
+    () => console.log(this.Evento)
+  );
+
+   /* this.eventoService.getEventos().subscribe(ev => this.Evento = ev,
+      error => console.log(error),
+      ()=> console.log("Finazada la carga de Eventos")
+      );*/
   }
 
   //Metodos

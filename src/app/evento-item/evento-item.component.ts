@@ -10,7 +10,7 @@ export class EventoItemComponent implements OnInit {
 
   @Input() elemEvento: IEventos = {
     title: '',
-    desc: '',
+    description: '',
     image: '',
     price: 0,
     date: ''

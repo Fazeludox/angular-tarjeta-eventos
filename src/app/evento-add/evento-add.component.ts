@@ -10,7 +10,7 @@ export class EventoAddComponent implements OnInit {
 
   newEvento: IEventos = {
     title: '',
-    desc: '',
+    description: '',
     image: '',
     price: 0,
     date: ''
@@ -29,7 +29,7 @@ export class EventoAddComponent implements OnInit {
 
     this.newEvento = {
       title: '',
-      desc: '',
+      description: '',
       image: '',
       price: 0,
       date: ''
