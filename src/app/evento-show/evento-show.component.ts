@@ -23,7 +23,12 @@ export class EventoShowComponent implements OnInit {
   constructor(private eventoService:EventosService) {}
 
   ngOnInit(): void {
-    this.Evento = this.eventoService.getEventos();
+    this.eventoService.getEventos()
+    .subscribe(
+      (result) => this.Evento = result,
+      (err) => console.error(err),
+      () => console.log(this.Evento)
+    );
   }
 
   //Metodos

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { IEventos } from '../interfaces/i-eventos';
+import { EventosService } from '../services/eventos.service';
 
 @Component({
   selector: 'evento-add',
@@ -9,8 +11,9 @@ import { IEventos } from '../interfaces/i-eventos';
 export class EventoAddComponent implements OnInit {
 
   newEvento: IEventos = {
+    id: 0,
     title: '',
-    desc: '',
+    description: '',
     image: '',
     price: 0,
     date: ''
@@ -18,22 +21,28 @@ export class EventoAddComponent implements OnInit {
 
   @Output() addEvento = new EventEmitter<IEventos>()
 
-  constructor() { }
+  constructor(private eventoServicio:EventosService) { }
 
   ngOnInit(): void {
   }
 
   enviarEvento = () => {
 
-    this.addEvento.emit(this.newEvento)
+    this.eventoServicio.addInsert(this.newEvento).subscribe(
+      ev=>{
+        this.addEvento.emit(ev.evento);
+        this.newEvento = {
+          id:0,
+          title: '',
+          description: '',
+          image: '',
+          price: 0,
+          date: ''
+        }
+      }
+    )
 
-    this.newEvento = {
-      title: '',
-      desc: '',
-      image: '',
-      price: 0,
-      date: ''
-    }
+
   }
 
   changeImage(fileInput: HTMLInputElement) {

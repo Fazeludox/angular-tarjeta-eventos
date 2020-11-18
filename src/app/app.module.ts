@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { EventoItemComponent } from './evento-item/evento-item.component';
 import { EventoAddComponent } from './evento-add/evento-add.component';
 import { EventosService } from './services/eventos.service';
+import { HttpClientModule } from'@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EventosService } from './services/eventos.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [EventosService],
   bootstrap: [AppComponent]

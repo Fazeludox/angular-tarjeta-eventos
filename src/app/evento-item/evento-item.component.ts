@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IEventos } from '../interfaces/i-eventos';
+import { EventosService } from '../services/eventos.service';
 
 @Component({
   selector: 'evento-item',
@@ -9,22 +10,28 @@ import { IEventos } from '../interfaces/i-eventos';
 export class EventoItemComponent implements OnInit {
 
   @Input() elemEvento: IEventos = {
-    title: '',
-    desc: '',
-    image: '',
+    id: 0,
+    title: "",
+    description: "",
+    date: "",
     price: 0,
-    date: ''
-  };
+    image: ""
+  }
 
   @Output() eventSelect = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private eventoService: EventosService) { }
 
   ngOnInit(): void {
   }
 
-  delEvento(){
-    this.eventSelect.emit();
+  delEvento() {
+
+    this.eventoService.deleteEvent(this.elemEvento.id).subscribe(
+      () => {
+        this.eventSelect.emit();
+      }
+    )
   }
 
 

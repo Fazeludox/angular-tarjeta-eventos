@@ -1,7 +1,8 @@
 export interface IEventos {
+  id:number,
   title:string,
-  image:string,
+  description:string,
   date:string,
-  desc:string,
-  price:number;
+  price:number,
+  image:string
 }
