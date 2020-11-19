@@ -3,10 +3,10 @@
   <nav class="navbar navbar-light bg-light justify-content-between mt-3">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="orderDate()">Orden por fecha</a>
+        <a class="nav-link" href="#" (click)="orderDate($event)">Orden por fecha</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="orderPrice()">Orden por precio</a>
+        <a class="nav-link" href="#" (click)="orderPrice($event)">Orden por precio</a>
       </li>
     </ul>
     <form class="form-inline">
@@ -21,8 +21,6 @@
     </form>
   </nav>
 </div>
-
-<evento-add (addEvento)="nuevoEvento($event)"></evento-add>
 
 <div class="card-columns" *ngIf="Evento && Evento.length; else noLoaded">
 

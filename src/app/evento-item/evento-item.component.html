@@ -1,19 +1,27 @@
 <div class="card">
-  <img
-    [src]="elemEvento.image"
-    class="card-img-top"
-    [alt]="elemEvento.title"
-    [ngStyle]="alturaImage"
-  />
+  <a [routerLink]="['/events', elemEvento.id]">
+    <img
+      [src]="elemEvento.image"
+      class="card-img-top"
+      [alt]="elemEvento.title"
+      [ngStyle]="alturaImage"
+    />
+  </a>
   <div class="card-body">
-    <h4 class="card-title">{{ elemEvento.title | titlecase }}</h4>
+    <a [routerLink]="['/events', elemEvento.id]">
+      <h4 class="card-title">{{ elemEvento.title | titlecase }}</h4>
+    </a>
+
     <p class="card-text">{{ elemEvento.description }}</p>
+    <button class="btn btn-danger ml-3 float-right" (click)="delEvento()">
+      Delete
+    </button>
   </div>
+
   <div class="card-footer text-muted">
     {{ elemEvento.date | date: "dd/MM/y" }}
     <span class="float-right">{{
       elemEvento.price | currency: "EUR":"symbol"
     }}</span>
   </div>
-  <button class="btn btn-danger ml-3 float-right" (click)="delEvento()">Delete</button>
 </div>

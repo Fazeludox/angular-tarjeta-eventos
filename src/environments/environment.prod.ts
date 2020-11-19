@@ -1,3 +1,6 @@
+import { fail } from 'assert';
+
 export const environment = {
-  production: true
+  production: false,
+  baseUrl: 'http://curso.i234.me:8080'
 };

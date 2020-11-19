@@ -1,3 +1,4 @@
+import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { IEventos } from '../interfaces/i-eventos';
 import { EventosService } from '../services/eventos.service';
@@ -9,7 +10,14 @@ import { EventosService } from '../services/eventos.service';
 })
 export class EventoShowComponent implements OnInit {
 
-  public Evento: IEventos[] = [];
+  public Evento: IEventos[] = [{
+    id: 1,
+    title: "",
+    description: "",
+    date: "",
+    price: 0,
+    image: ""
+  }];
 
   public filterSearch: string = '';
 
@@ -33,7 +41,8 @@ export class EventoShowComponent implements OnInit {
 
   //Metodos
 
-  orderDate = () => {
+  orderDate = (ev:Event) => {
+    ev.preventDefault();
     this.filterSearch = '';
 
     this.Evento.sort((a, b) => {
@@ -52,7 +61,9 @@ export class EventoShowComponent implements OnInit {
     })
   }
 
-  orderPrice = () => {
+  orderPrice = (ev:Event) => {
+    ev.preventDefault();
+
 
     this.filterSearch = '';
 
@@ -67,9 +78,7 @@ export class EventoShowComponent implements OnInit {
     this.Evento = this.Evento.filter(event => ev !== event);
   }
 
-  nuevoEvento = ((ev: IEventos) => {
-    this.Evento.push(ev);
-  })
+
 
 
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { IEventos } from '../interfaces/i-eventos';
 import { EventosService } from '../services/eventos.service';
@@ -21,28 +22,18 @@ export class EventoAddComponent implements OnInit {
 
   @Output() addEvento = new EventEmitter<IEventos>()
 
-  constructor(private eventoServicio:EventosService) { }
+  constructor(private eventoServicio:EventosService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  enviarEvento = () => {
+  enviarEvento = async () => {
 
     this.eventoServicio.addInsert(this.newEvento).subscribe(
-      ev=>{
-        this.addEvento.emit(ev.evento);
-        this.newEvento = {
-          id:0,
-          title: '',
-          description: '',
-          image: '',
-          price: 0,
-          date: ''
-        }
+      () => {
+this.router.navigate(['/events'])
       }
     )
-
-
   }
 
   changeImage(fileInput: HTMLInputElement) {

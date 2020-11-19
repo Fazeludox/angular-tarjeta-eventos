@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {  map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import {  catchError, map } from 'rxjs/operators';
 import { IEventos } from '../interfaces/i-eventos';
 import { EventoResponse, Respuesta } from '../interfaces/respuesta';
 
@@ -10,7 +10,7 @@ import { EventoResponse, Respuesta } from '../interfaces/respuesta';
 })
 export class EventosService {
 
-  private eventURL: string = 'http://curso.i234.me:8080/eventos';
+  private eventURL: string = 'eventos';
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +22,18 @@ export class EventosService {
 
   addInsert = (evento: IEventos):Observable<EventoResponse> => {
 
-    return this.http.post<EventoResponse>(this.eventURL, evento);
+    return this.http.post<EventoResponse>(this.eventURL, evento).pipe(
+      map(res => res),
+      catchError((res:HttpErrorResponse)=> throwError(`Èrror Insertado en el evento. Codigo del servidor: ${res.status} y codigo del evento ${res.message}`))
+    );
 
+  }
+
+  getEvento = (id:number):Observable<EventoResponse> => {
+    return this.http.get<EventoResponse>(this.eventURL+"/"+id).pipe(
+      map(res => res),
+      catchError((res:HttpErrorResponse)=> throwError(`Èrror Insertado en el evento. Codigo del servidor: ${res.status} y codigo del evento ${res.message}`))
+    );;
   }
 
   deleteEvent = (id: number):Observable<EventoResponse> => {
