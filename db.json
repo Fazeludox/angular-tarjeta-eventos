@@ -1,16 +1,66 @@
-[
-  {
-    "title": "Presentacion Angular",
-    "image": "assets/angular.png",
-    "date": "2020-10-15",
-    "desc": "Evento hablando de angular y su impacto.",
-    "price": 15
-  },
-  {
-    "title": "JQuery esta muerto",
-    "image": "assets/jquerydead.png",
-    "date": "2020-05-02",
-    "desc": "La aparicion de ES6 esta matando a Jquery",
-    "price": 25
-  }
-]
+{
+  "eventos": [
+    {
+      "id":0,
+      "title": "Presentacion Angular",
+      "image": "assets/angular.png",
+      "date": "2020-10-15",
+      "desc": "Evento hablando de angular y su impacto.",
+      "price": 15
+    },
+    {
+      "id":1,
+      "title": "JQuery esta muerto",
+      "image": "assets/jquerydead.png",
+      "date": "2020-05-02",
+      "desc": "La aparicion de ES6 esta matando a Jquery",
+      "price": 25
+    },
+    {
+      "id": 4,
+      "title": "hola 2222 tal",
+      "description": "2342342",
+      "date": "0234-04-22T23:40:28.000Z",
+      "price": 4234234,
+      "address": "none",
+      "image": "http://arturober.com/angular-semana4/img/events/e98/da3456f1cfcd21cf122579f8647a6adfb238a.jpg"
+    },
+    {
+      "id": 46,
+      "title": "asdsa",
+      "description": "asd",
+      "date": "2020-11-02T23:00:00.000Z",
+      "price": 23,
+      "address": null,
+      "image": "http://curso.i234.me:8080/images/asdsa.jpeg"
+    },
+    {
+      "id": 47,
+      "title": "1232",
+      "description": "1",
+      "date": "2020-11-26T23:00:00.000Z",
+      "price": 1,
+      "address": null,
+      "image": "http://curso.i234.me:8080/images/1232.png"
+    },
+    {
+      "id": 48,
+      "title": "Sergio",
+      "description": "wefd",
+      "date": "2020-11-10T23:00:00.000Z",
+      "price": 34,
+      "address": null,
+      "image": "http://curso.i234.me:8080/images/Sergio.png"
+    },
+    {
+      "id": 49,
+      "title": "sadasd",
+      "description": "asdsda",
+      "date": "1111-11-10T23:40:28.000Z",
+      "price": 12,
+      "address": null,
+      "image": "http://curso.i234.me:8080/images/sadasd.png"
+    }
+  ],
+  "ok": true
+}
